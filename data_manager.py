@@ -10,8 +10,6 @@ SHEETY_ENDPOINT = f'https://api.sheety.co/{SHEETY_USERNAME}/flightDeals/prices'
 sheety_username = os.getenv('sheety_username')
 sheety_password = os.getenv('sheety_password')
 
-print(SHEETY_USERNAME)
-
 class DataManager:
 
     def __init__(self):
