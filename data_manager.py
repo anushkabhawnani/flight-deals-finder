@@ -17,6 +17,7 @@ class DataManager:
         self.result = self.response.json()
         self.get_iata_code()
         self.get_lowest_price()
+        self.get_emails()
 
     def get_iata_code(self):
         iataCode = []
@@ -38,3 +39,19 @@ class DataManager:
                 'PRICE': item['lowestPrice'],
             })
         return lowestPrice
+
+    def get_emails(self):
+        emails = []
+    
+        # GET EMAIL AND NAMES OF EACH USER THAT REGISTERS FOR THE SUBSCRIPTION PLAN
+    
+        response = requests.get(url=SHEETY_ENDPOINT_USERS, auth=(sheety_username, sheety_password))
+        result = response.json()
+    
+        for user in result['users']:
+            emails.append({
+                'firstName': user['whatIsYourFirstName?'],
+                'lastName': user['whatIsYourLastName?'],
+                'emailAddress': user['whatIsYourEMailAddress?']
+            })
+        return emails
